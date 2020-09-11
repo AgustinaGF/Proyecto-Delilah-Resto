@@ -12,7 +12,7 @@ router.post("/", validateUserLogin, async(req, res) => {
         let validation = await loginService.validateLoginFields(user);
 
         if (validation.length > 0) {
-            res.status(400).json({ exito: false, data: validation });
+            res.status(400).json({ success: false, message: validation });
             return;
         }
         //buscar id del usuario
@@ -25,30 +25,29 @@ router.post("/", validateUserLogin, async(req, res) => {
             );
             userData = userData[0];
 
-            //generar Token
-            let token = jwt.sign({
+            //generar Token si se logea con email
+            var token = jwt.sign({
                     id: userData.id,
                     fullname: userData
                 },
                 process.env.SECRET_JWT
             );
-            console.log(token);
         } else {
             let userData = await loginService.searchUserByUsername(
                 username
             );
             userData = userData[0];
 
-            //generar Token
-            let token = jwt.sign({
+            //generar Token si se logea con username
+            var token = jwt.sign({
                     id: userData.id,
                     fullname: userData
                 },
                 process.env.SECRET_JWT
             );
-            console.log(token);
         }
-        res.status(200).send({ exito: true, data: "Login Ok" });
+        res.status(200).json({ success: true, message: "Login ok", token: `${token}` })
+
     } catch (err) {
         res.status(500).json({ Error: err.message });
     }

@@ -10,3 +10,5 @@ module.exports.validateProductRegister = function(req, res, next) {
         return next();
     }
 }
+
+// fijarme bien si esto funciona

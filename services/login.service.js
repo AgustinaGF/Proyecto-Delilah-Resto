@@ -1,5 +1,4 @@
 const usersRepo = require("../repositories/users.repo")
-    // const loginRoute = require("../routes/login.routes");
 const bcrypt = require("bcryptjs");
 
 module.exports.validateLoginFields = async function(data) {
@@ -10,7 +9,7 @@ module.exports.validateLoginFields = async function(data) {
         let userByUsername = await usersRepo.searchUserByUsername(username);
         console.log(userByUsername)
         if (userByUsername.length != 1) {
-            errors.push({ mensaje: "El Usuario ingresado no es valido" });
+            errors.push({ message: "Invalid User" });
             return errors;
         }
         let userPassword = userByUsername[0].password;
@@ -20,13 +19,13 @@ module.exports.validateLoginFields = async function(data) {
         console.log(passwordVerify);
 
         if (!passwordVerify) {
-            errors.push({ mensaje: "La contraseña ingresada es incorrecta" });
+            errors.push({ message: "The password is incorrect" });
         }
     } else {
         // busca usuario por mail
         let userByEmail = await usersRepo.searchUserByEmail(email);
         if (userByEmail.length != 1) {
-            errors.push({ mensaje: "El email ingresado no es valido" });
+            errors.push({ message: "Invalid email" });
             return errors;
         }
         let userPassword = userByEmail[0].password;
@@ -35,7 +34,7 @@ module.exports.validateLoginFields = async function(data) {
         console.log(passwordVerify);
 
         if (!passwordVerify) {
-            errors.push({ mensaje: "La contraseña ingresada es incorrecta" });
+            errors.push({ message: "The password is incorrect" });
         }
     }
     return errors;

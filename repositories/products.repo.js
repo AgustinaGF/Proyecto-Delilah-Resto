@@ -55,7 +55,6 @@ module.exports.modifyProductById = async(productId, newData) => {
     })
 }
 module.exports.deleteProductById = async(productId) => {
-    console.log(productId)
     return new Promise((res, rej) => {
         sql.query('DELETE FROM products WHERE product_id=?', {
             replacements: [productId],

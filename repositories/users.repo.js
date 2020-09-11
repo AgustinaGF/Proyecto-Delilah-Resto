@@ -38,7 +38,7 @@ module.exports.searchUserByEmail = async(email) => {
             replacements: { userEmail: email },
             type: sql.QueryTypes.SELECT
         }).then(resultado => {
-            res(resultado[0]);
+            res(resultado);
         }).catch(error => {
             console.log(error)
             rej(error)
@@ -86,27 +86,18 @@ module.exports.modifyUserById = async(userId, newData) => {
             })
         })
     }
-    // elimina cancion por Id
+    // elimina user por Id
 module.exports.deleteUserById = async(userId) => {
-        console.log(userId)
-        return new Promise((res, rej) => {
-            sql.query('DELETE FROM users WHERE user_id=?', {
-                replacements: [userId],
-                type: sql.QueryTypes.DELETE
-            }).then(result => {
-                res(result)
-            }).catch(error => {
-                console.log(error)
-                rej(error)
-            })
+    console.log(userId)
+    return new Promise((res, rej) => {
+        sql.query('DELETE FROM users WHERE user_id=?', {
+            replacements: [userId],
+            type: sql.QueryTypes.DELETE
+        }).then(result => {
+            res(result)
+        }).catch(error => {
+            console.log(error)
+            rej(error)
         })
-    }
-    // module.exports.searchUserByPassword = async(password) => {
-    //     return new Promise((res, rej) => {
-    //         sql.query('SELECT * FROM users WHERE password = :userPassword', {
-    //             replacements: { userPassword: password },
-    //         }).then(resultado => {
-    //             res(resultado[0]);
-    //         })
-    //     })
-    // }
+    })
+}
