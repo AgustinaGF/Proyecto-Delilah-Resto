@@ -2,9 +2,12 @@ const sql = require("../connection/connection")
 
 module.exports.getOrders = async function() {
     return new Promise((res, rej) => {
-        sql.query("SELECT * FROM orders")
+        sql.query(`SELECT orders.order_id,order_status.status,orders.createdDate,orders_detail.product_id,products.product_title, 
+        order_description,orders_detail.product_price,orders_detail.product_amount,method_of_payment,
+        (orders_detail.product_price*orders_detail.product_amount)AS total, users.user_id, users.username, users.address FROM orders_detail INNER JOIN orders ON 
+        orders_detail.order_id = orders.order_id INNER JOIN users ON orders.user_id = users.user_id INNER JOIN products ON orders_detail.product_id = 
+        products.product_id INNER JOIN order_status ON orders.status = order_status.status_id`)
             .then(result => {
-                console.log(result)
                 res(result[0])
             }).catch(error => {
                 console.log(error)
@@ -15,7 +18,10 @@ module.exports.getOrders = async function() {
 
 module.exports.getOderByUser = async(user_id) => {
     return new Promise((res, rej) => {
-        sql.query('SELECT * FROM orders WHERE user_id = :userId', {
+        sql.query(`SELECT orders.order_id,order_status.status,products.product_title,orders_detail.product_price,orders_detail.product_amount,method_of_payment,
+        (orders_detail.product_price*orders_detail.product_amount)AS total,users.address FROM orders_detail INNER JOIN orders ON 
+        orders_detail.order_id = orders.order_id INNER JOIN users ON orders.user_id = users.user_id INNER JOIN products ON orders_detail.product_id = 
+        products.product_id INNER JOIN order_status ON orders.status = order_status.status_id WHERE orders.user_id = :userId`, {
             replacements: { userId: user_id },
             type: sql.QueryTypes.SELECT
         }).then(result => {
@@ -28,7 +34,10 @@ module.exports.getOderByUser = async(user_id) => {
 }
 module.exports.getOrderById = async(order_id) => {
     return new Promise((res, rej) => {
-        sql.query('SELECT * FROM orders WHERE order_id= :orderId', {
+        sql.query(`SELECT orders.order_id,order_status.status,products.product_title,orders_detail.product_price,orders_detail.product_amount,method_of_payment,
+        (orders_detail.product_price*orders_detail.product_amount)AS total,users.user_id,users.username,users.address FROM orders_detail INNER JOIN orders ON 
+        orders_detail.order_id = orders.order_id INNER JOIN users ON orders.user_id = users.user_id INNER JOIN products ON orders_detail.product_id = 
+        products.product_id INNER JOIN order_status ON orders.status = order_status.status_id WHERE orders.order_id= :orderId`, {
             replacements: { orderId: order_id },
             type: sql.QueryTypes.SELECT
         }).then(result => {

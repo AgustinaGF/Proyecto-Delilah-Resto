@@ -15,7 +15,7 @@ server.use("/api/auth/login", userLogin)
     // routes products
 server.use("/api/products", productsRoute)
     //  routes orders
-server.use("/api/auth/orders", ordersRoute)
+server.use("/api/orders", ordersRoute)
 
 server.listen(3000, () => {
     console.log("Server Init.")

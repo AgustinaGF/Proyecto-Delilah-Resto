@@ -10,7 +10,18 @@ module.exports.validateUserRegister = function(req, res, next) {
         return next();
     }
 }
-
+module.exports.validateModifyUser = function(req, res, next) {
+    const { password, full_name, phone_number, address } = req.body;
+    let errors = [];
+    if (!password || !full_name || !phone_number || !address) {
+        errors.push({
+            mensaje: "Required fields are missing ",
+        });
+        return res.status(400).json({ error: errors })
+    } else {
+        return next();
+    }
+}
 module.exports.validateOrderRegister = function(req, res, next) {
     const { method_of_payment } = req.body;
     let errors = [];

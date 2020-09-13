@@ -11,19 +11,26 @@ router.get("/", authUser, async(req, res) => {
             const userId = req.user_id
             const rolUser = req.user_admin
             let result = await ordersService.getAllOrders(rolUser, userId)
-            console.log(result)
-            res.status(200).send(result)
+            if (result.length <= 0) {
+                res.status(404).send("There aren't orders")
+            } else {
+                res.status(200).send(result)
+            }
         } catch (error) {
             console.log(error.message)
             res.status(500).json({ error: error.message });
         }
     })
-    // get para traer orders por id
+    // get para traer orders por id, solo  admin puede hacerlo
 router.get("/:orderid", authUserAdmin, async(req, res) => {
     try {
         let orderId = req.params.orderid
-        let result = await ordersService.getOrderById(orderid);
-        res.status(200).send(result)
+        let result = await ordersService.getOrderById(orderId);
+        if (result.length <= 0) {
+            res.status(404).send("No order found")
+        } else {
+            res.status(200).send(result)
+        }
     } catch (error) {
         console.log(error.message)
         res.status(500).json({ error: error.message });

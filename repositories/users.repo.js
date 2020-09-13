@@ -75,8 +75,8 @@ module.exports.modifyUserById = async(userId, newData) => {
         return new Promise((res, rej) => {
             console.log(userId)
             console.log(newData)
-            sql.query('UPDATE users SET username=?, password=?, full_name =?, email=?, phone_number=?, address=? WHERE user_id=?', {
-                replacements: [newData.username, newData.password, newData.full_name, newData.email, newData.phone_number, newData.address, userId],
+            sql.query('UPDATE users SET password=?, full_name =?, phone_number=?, address=? WHERE user_id=?', {
+                replacements: [newData.password, newData.full_name, newData.phone_number, newData.address, userId],
                 type: sql.QueryTypes.UPDATE
             }).then(result => {
                 res(result)

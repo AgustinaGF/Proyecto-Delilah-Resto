@@ -47,7 +47,7 @@ module.exports.createOrder = async function(userId, dataOrder) {
                 const product = arrayProduct[i]
                 const productPrice = product[0].product_price
                 const productId = product[0].product_id
-                const descriptionOrder = product[0].product_title
+                const descriptionOrder = product[0].description
                     // aca paso la cantidad de cada producto 
                 const productAmount = product[1].cantidad
                 var createOrderDetail = await ordersRepo.createOrderDetail(orderId, productId, descriptionOrder, productPrice, productAmount)
