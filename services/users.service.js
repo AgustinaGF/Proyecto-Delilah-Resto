@@ -37,10 +37,9 @@ module.exports.modifyUser = async function(idUser, newData) {
 
 module.exports.deleteUser = async function(userId) {
     let user = await repoUsers.deleteUserById(userId)
-    console.log(user)
-    if (!user) {
-        return user
-    } else {
+    if (user[0].affectedRows == 0) {
         throw new Error("User could not be remove")
+    } else {
+        return user
     }
 }

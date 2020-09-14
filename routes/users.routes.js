@@ -59,34 +59,7 @@ router.patch("/", authUser, validateModifyUser, async(req, res) => {
             res.status(404).json({ error: error.message })
         }
     })
-    // router.put("/:userId", authUserAdmin, validateUserRegister, async(req, res) => {
-    //         try {
-    //             let idUser = req.params.userId
-    //             let newData = req.body
-    //             let validation = await registerService.validateUserFields(newData);
-    //             if (validation.length > 0) {
-    //                 return res.status(400).json({ exito: false, data: validation });
-    //             }
-    //             //encriptar password
-    //             const encryptedPassword = await registerService.encryptedPassword(newData);
-    //             newData.password = encryptedPassword;
-    //             let result = await userService.modifyUser(idUser, newData)
-    //             res.status(200).send("User has been successfully modified")
-    //         } catch (error) {
-    //             res.status(404).json({ error: error.message })
-    //         }
-    //     })
-    // router.put("/:userId", authUserAdmin, validateUserRegister, async(req, res) => {
-    //     try {
-    //         let idUser = req.params.userId
-    //         let newData = req.body
-    //         let result = await userService.modifyUser(idUser, newData)
-    //         res.status(200).send("User has been successfully modified")
-    //     } catch (error) {
-    //         res.status(404).json({ error: error.message })
-    //     }
-    // })
-
+    // user admin va a ser el unico que va a poder eliminar un usuario
 router.delete("/:userId", authUserAdmin, async(req, res) => {
     try {
         let userId = req.params.userId

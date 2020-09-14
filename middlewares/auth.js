@@ -5,7 +5,6 @@ module.exports = {
     authUser: async(req, res, next) => {
         try {
             const token = req.header("Authorization").split(" ")[1];
-            console.log(token, "hola")
             if (token) {
                 let verifyToken = jwt.verify(token, process.env.SECRET_JWT);
                 req.user_id = verifyToken.fullname.user_id

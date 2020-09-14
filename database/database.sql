@@ -36,8 +36,8 @@ CREATE TABLE orders (
   user_id             INT NOT NULL,
   createdDate         DATETIME NOT NULL DEFAULT current_timestamp(),
   updateDate          DATETIME NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  CONSTRAINT FK_userOrders FOREIGN KEY (user_id) REFERENCES users (user_id),
-  CONSTRAINT FK_orderStatus FOREIGN KEY (status) REFERENCES order_status (status_id)
+  CONSTRAINT FK_userOrders FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_orderStatus FOREIGN KEY (status) REFERENCES order_status (status_id) ON DELETE CASCADE ON UPDATE CASCADE
 ); 
 -- create table orders_detail
 CREATE TABLE orders_detail (
@@ -49,8 +49,8 @@ CREATE TABLE orders_detail (
   product_amount     INT NOT NULL,
   createdDate      DATETIME NOT NULL DEFAULT current_timestamp(),
   updateDate       DATETIME NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  CONSTRAINT FK_ordersId FOREIGN KEY (order_id) REFERENCES orders (order_id),
-  CONSTRAINT FK_productsId FOREIGN KEY(product_id) REFERENCES products(product_id)
+  CONSTRAINT FK_ordersId FOREIGN KEY (order_id) REFERENCES orders (order_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT FK_productsId FOREIGN KEY(product_id) REFERENCES products(product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -- insert order_status

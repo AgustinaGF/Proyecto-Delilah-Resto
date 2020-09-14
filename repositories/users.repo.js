@@ -73,8 +73,6 @@ module.exports.getUserById = async(user_id) => {
 
 module.exports.modifyUserById = async(userId, newData) => {
         return new Promise((res, rej) => {
-            console.log(userId)
-            console.log(newData)
             sql.query('UPDATE users SET password=?, full_name =?, phone_number=?, address=? WHERE user_id=?', {
                 replacements: [newData.password, newData.full_name, newData.phone_number, newData.address, userId],
                 type: sql.QueryTypes.UPDATE
@@ -87,12 +85,10 @@ module.exports.modifyUserById = async(userId, newData) => {
         })
     }
     // elimina user por Id
-module.exports.deleteUserById = async(userId) => {
-    console.log(userId)
+module.exports.deleteUserById = async(user_id) => {
     return new Promise((res, rej) => {
-        sql.query('DELETE FROM users WHERE user_id=?', {
-            replacements: [userId],
-            type: sql.QueryTypes.DELETE
+        sql.query('DELETE FROM users WHERE user_id =?', {
+            replacements: [user_id]
         }).then(result => {
             res(result)
         }).catch(error => {

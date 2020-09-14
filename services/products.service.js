@@ -42,19 +42,19 @@ module.exports.validateProductFields = async function(data) {
 
 module.exports.modifyProduct = async function(productId, newData) {
     let product = await productsRepo.modifyProductById(productId, newData)
-    if (product) {
-        return product
-    } else {
+    if (product[0].affectedRows == 0) {
         throw new Error("Product could not be modified")
+    } else {
+        return product
     }
 }
 
 
 module.exports.deleteProduct = async function(productId) {
     let product = await productsRepo.deleteProductById(productId)
-    if (!product) {
-        return product
-    } else {
+    if (product[0].affectedRows == 0) {
         throw new Error("Product could not be remove")
+    } else {
+        return product
     }
 }

@@ -45,7 +45,6 @@ module.exports.modifyProductById = async(productId, newData) => {
         console.log(newData)
         sql.query('UPDATE products SET product_title=?, product_price=?, product_image=?, description=? WHERE product_id=?', {
             replacements: [newData.product_title, newData.product_price, newData.product_image, newData.description, productId],
-            type: sql.QueryTypes.UPDATE
         }).then(result => {
             res(result)
         }).catch(error => {
@@ -58,7 +57,6 @@ module.exports.deleteProductById = async(productId) => {
     return new Promise((res, rej) => {
         sql.query('DELETE FROM products WHERE product_id=?', {
             replacements: [productId],
-            type: sql.QueryTypes.DELETE
         }).then(result => {
             res(result)
         }).catch(error => {

@@ -81,9 +81,9 @@ module.exports.modifyStatusOrder = async function(orderId, newStatus) {
 // }
 module.exports.deleteOrder = async function(orderId) {
     let deleteOrder = await ordersRepo.deleteOrderById(orderId)
-    if (!deleteOrder) {
-        return deleteOrder
-    } else {
+    if (deleteOrder[0].affectedRows == 0) {
         throw new Error("Order could not be remove")
+    } else {
+        return deleteOrder
     }
 }

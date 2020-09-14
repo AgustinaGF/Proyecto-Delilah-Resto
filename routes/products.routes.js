@@ -44,17 +44,17 @@ router.post("/", validateProductRegister, authUserAdmin, async(req, res) => {
 
 // put que modifique el productsRepo, solo user admin puede hacerlo
 router.put("/:productId", authUserAdmin, async(req, res) => {
-        try {
-            let productId = req.params.productId
-            let newData = req.body
-            console.log(productId, newData)
-            let result = await serviceProducts.modifyProduct(productId, newData)
-            res.status(200).send("Product has been successfully modified")
-        } catch (error) {
-            res.status(404).json({ error: error.message })
-        }
-    })
-    // delete solo user admin puede hacerlo
+    try {
+        let productId = req.params.productId
+        let newData = req.body
+        let result = await serviceProducts.modifyProduct(productId, newData)
+        res.status(200).send("Product has been successfully modified")
+    } catch (error) {
+        res.status(404).json({ error: error.message })
+    }
+})
+
+// delete solo user admin puede hacerlo
 router.delete("/:productId", authUserAdmin, async(req, res) => {
     try {
         let productId = req.params.productId

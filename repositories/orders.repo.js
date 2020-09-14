@@ -96,7 +96,6 @@ module.exports.deleteOrderById = async(orderId) => {
         return new Promise((res, rej) => {
             sql.query('UPDATE orders SET status = 6 WHERE order_id=?', {
                 replacements: [orderId],
-                type: sql.QueryTypes.UPDATE
             }).then(result => {
                 res(result)
             }).catch(error => {
