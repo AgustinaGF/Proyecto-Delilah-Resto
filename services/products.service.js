@@ -30,7 +30,6 @@ module.exports.validateProductFields = async function(data) {
             return errors
         } else {
             let newProduct = await productsRepo.createProduct(data);
-            console.log(newProduct)
             return errors
         }
     } catch (error) {

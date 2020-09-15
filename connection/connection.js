@@ -5,9 +5,9 @@ dotenv.config()
 const sequelize = new Sequelize(process.env.CONNECTION_DB)
 
 sequelize.authenticate().then(() => {
-    console.log("Nos Conectamos a la Base de Datos")
+    console.log("We connect to the Database")
 }).catch(error => {
-    console.log("Se Ha Producido un error", error)
+    console.log("An error has occurred", error)
 })
 
 

@@ -18,7 +18,7 @@ module.exports.getOrders = async function() {
 
 module.exports.getOderByUser = async(user_id) => {
     return new Promise((res, rej) => {
-        sql.query(`SELECT orders.order_id,order_status.status,products.product_title,orders_detail.product_price,orders_detail.product_amount,method_of_payment,
+        sql.query(`SELECT users.user_id,orders.order_id,order_status.status,products.product_title,orders_detail.product_price,orders_detail.product_amount,method_of_payment,
         (orders_detail.product_price*orders_detail.product_amount)AS total,users.address FROM orders_detail INNER JOIN orders ON 
         orders_detail.order_id = orders.order_id INNER JOIN users ON orders.user_id = users.user_id INNER JOIN products ON orders_detail.product_id = 
         products.product_id INNER JOIN order_status ON orders.status = order_status.status_id WHERE orders.user_id = :userId`, {
@@ -55,7 +55,6 @@ module.exports.createOrder = async(method, userId) => {
             replacements: [method, userId],
             type: sql.QueryTypes.INSERT
         }).then(result => {
-            console.log(result);
             res(result)
         }).catch(error => {
             console.log(error)
@@ -69,7 +68,6 @@ module.exports.createOrderDetail = async(orderId, productId, descriptionOrder, p
             replacements: [orderId, productId, descriptionOrder, productPrice, produAmount],
             type: sql.QueryTypes.INSERT
         }).then(result => {
-            console.log(result);
             res(result)
         }).catch(error => {
             console.log(error)
@@ -82,7 +80,6 @@ module.exports.modifyStatusOrderById = async(orderId, status) => {
     return new Promise((res, rej) => {
         sql.query('UPDATE orders SET status =? WHERE order_id=?', {
             replacements: [status, orderId],
-            type: sql.QueryTypes.UPDATE
         }).then(result => {
             res(result)
         }).catch(error => {
@@ -92,29 +89,14 @@ module.exports.modifyStatusOrderById = async(orderId, status) => {
     })
 }
 module.exports.deleteOrderById = async(orderId) => {
-        console.log(orderId)
-        return new Promise((res, rej) => {
-            sql.query('UPDATE orders SET status = 6 WHERE order_id=?', {
-                replacements: [orderId],
-            }).then(result => {
-                res(result)
-            }).catch(error => {
-                console.log(error)
-                rej(error)
-            })
+    return new Promise((res, rej) => {
+        sql.query('UPDATE orders SET status = 6 WHERE order_id=?', {
+            replacements: [orderId],
+        }).then(result => {
+            res(result)
+        }).catch(error => {
+            console.log(error)
+            rej(error)
         })
-    }
-    // module.exports.deleteOrderById = async(orderId) => {
-    //     console.log(orderId)
-    //     return new Promise((res, rej) => {
-    //         sql.query('DELETE FROM orders WHERE order_id=?', {
-    //             replacements: [orderId],
-    //             type: sql.QueryTypes.DELETE
-    //         }).then(result => {
-    //             res(result)
-    //         }).catch(error => {
-    //             console.log(error)
-    //             rej(error)
-    //         })
-    //     })
-    // }
+    })
+}

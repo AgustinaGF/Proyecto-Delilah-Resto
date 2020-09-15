@@ -16,7 +16,6 @@ router.post("/", validateUserLogin, async(req, res) => {
             return;
         }
         //buscar id del usuario
-        console.log(req.body.email);
         const email = req.body.email
         const username = req.body.username
         if (email) {

@@ -3,14 +3,12 @@ const productsRepo = require("../repositories/products.repo")
 const repoUsers = require("../repositories/users.repo")
 
 module.exports.getAllOrders = async function(rolUser, userId) {
-    console.log(rolUser)
     if (rolUser == "admin") {
         let orders = await ordersRepo.getOrders()
         return orders
     }
     if (rolUser == "user") {
         // si no es admin solo me va a devolver sus pedidos
-        console.log(userId)
         let orderByUser = await ordersRepo.getOderByUser(userId)
         return orderByUser
     } else {
@@ -60,25 +58,17 @@ module.exports.createOrder = async function(userId, dataOrder) {
     // me falta probarlo
 module.exports.modifyStatusOrder = async function(orderId, newStatus) {
     let status = newStatus.status
-    if ((status !== "1") && (status !== "2") && (status !== "3") && (status !== "4") && (status !== "5") && (status !== "6")) {
-        console.log(status)
+    if ((status !== 1) && (status !== 2) && (status !== 3) && (status !== 4) && (status !== 5) && (status !== 6)) {
         throw new Error("The order status is incorrect you must enter a number from 1 to 6 ");
     } else {
         let changeStatus = await ordersRepo.modifyStatusOrderById(orderId, status)
-        return changeStatus;
+        if (changeStatus[0].affectedRows == 0) {
+            throw new Error("order status could not be modified")
+        } else {
+            return changeStatus
+        }
     }
 }
-
-// module.exports.modifyStatusOrder = async function(orderId, newStatus) {
-//     let status = newStatus.status
-//     if ((status !== "confirmed") && (status !== "canceled") && (status !== "delivered") && (status !== "new") && (status !== "preparing")) {
-//         console.log(status)
-//         throw new Error("The status orders must be confirmed or preparing or shipping or canceled or delivered or new");
-//     } else {
-//         let changeStatus = await ordersRepo.modifyStatusOrderById(orderId, status)
-//         return changeStatus;
-//     }
-// }
 module.exports.deleteOrder = async function(orderId) {
     let deleteOrder = await ordersRepo.deleteOrderById(orderId)
     if (deleteOrder[0].affectedRows == 0) {

@@ -7,7 +7,6 @@ const { validateUserRegister } = require("../middlewares/register")
 router.post("/", validateUserRegister, async(req, res) => {
     try {
         let user = req.body;
-        console.log(user)
         let validation = await registerService.validateUserFields(user);
         console.log(validation)
         if (validation.length > 0) {

@@ -20,10 +20,8 @@ module.exports = {
     authUserAdmin: async(req, res, next) => {
         try {
             const token = req.header("Authorization").split(" ")[1];
-            console.log(token)
             let verifyToken = jwt.verify(token, process.env.SECRET_JWT);
             const rolUser = verifyToken.fullname.user_admin
-            console.log(rolUser)
             if (rolUser == "admin") {
                 return next();
             } else {

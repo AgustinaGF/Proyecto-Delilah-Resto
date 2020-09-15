@@ -8,7 +8,6 @@ const { authUser, authUserAdmin } = require("../middlewares/auth")
 router.get("/", authUser, async(req, res) => {
         try {
             let result = await serviceProducts.getAllProducts()
-            console.log(result)
             res.status(200).send(result)
         } catch (error) {
             console.log(error.message)

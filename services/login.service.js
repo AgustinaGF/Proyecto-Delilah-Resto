@@ -3,20 +3,16 @@ const bcrypt = require("bcryptjs");
 
 module.exports.validateLoginFields = async function(data) {
     const { username, email, password } = data;
-    console.log({ username, email, password });
     let errors = [];
     if (username && password) {
         let userByUsername = await usersRepo.searchUserByUsername(username);
-        console.log(userByUsername)
         if (userByUsername.length != 1) {
             errors.push({ message: "Invalid User" });
             return errors;
         }
         let userPassword = userByUsername[0].password;
-        console.log(userPassword)
-            //checkear contraseña valida 
+        //checkear contraseña valida 
         const passwordVerify = await bcrypt.compare(password, userPassword);
-        console.log(passwordVerify);
 
         if (!passwordVerify) {
             errors.push({ message: "The password is incorrect" });
@@ -31,7 +27,6 @@ module.exports.validateLoginFields = async function(data) {
         let userPassword = userByEmail[0].password;
         //checkear contraseña valida 
         const passwordVerify = await bcrypt.compare(password, userPassword);
-        console.log(passwordVerify);
 
         if (!passwordVerify) {
             errors.push({ message: "The password is incorrect" });

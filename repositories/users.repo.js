@@ -4,7 +4,6 @@ module.exports.getUsers = async function() {
     return new Promise((res, rej) => {
         sql.query("SELECT * FROM users")
             .then(result => {
-                console.log(result)
                 res(result[0])
             }).catch(error => {
                 console.log(error)
@@ -21,7 +20,6 @@ module.exports.createUser = async(user) => {
             replacements: [user.username, user.password, user.full_name, user.email, user.phone_number, user.address],
             type: sql.QueryTypes.INSERT
         }).then(result => {
-            console.log(result);
             res(result)
         }).catch(error => {
             console.log(error)

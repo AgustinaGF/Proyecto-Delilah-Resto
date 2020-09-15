@@ -10,7 +10,6 @@ const { validateModifyUser } = require("../middlewares/register")
 router.get("/", authUserAdmin, async(req, res) => {
     try {
         let result = await userService.getAllUsers()
-        console.log(result)
         res.status(200).send(result)
     } catch (error) {
         console.log(error.message)
@@ -41,7 +40,7 @@ router.get("/:userId", authUserAdmin, async(req, res) => {
             res.status(500).json({ error: error.message });
         }
     })
-    // el usuario admin va a ser el unico que va a poder modificar info de otro usuario
+    // el usuario logueado va a poder modificar sus datos.
 router.patch("/", authUser, validateModifyUser, async(req, res) => {
         try {
             let idUser = req.user_id
