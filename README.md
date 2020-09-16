@@ -43,7 +43,7 @@ De esta manera se crearan las tablas necesarias, los productos y el estado de lo
 
 ⚠️ ES MUY IMPORTANTE QUE SE RESPETEN EL ORDEN DE LOS SCRIPTS⚠️
 
-### 5- Inicializar el servidor.🚀
+### 5- Inicializar el servidor 🚀
 Para esto es necesario crer un archivo `.env` dentro de tu repositorio local en el directorio principal e ingresar las siguientes variables.
 ```
 CONNECTION_DB = "mysql://root@localhost:3306/delilah"
@@ -58,7 +58,7 @@ npm run dev
 ### 6- Registrar Usuario
 
 Una vez inicializado el servidor tenes que registrar un usuario en el siguiente endpoint `localhost:3000/api/auth/register`
-**El modelo de payload  para registrar usuario es el siguiente
+**El modelo de payload  para registrar usuario es el siguiente**
 ```
 {
     "username": "LuisMiguel",
@@ -79,23 +79,26 @@ UPDATE users SET user_admin =  "admin"  WHERE  user_id  = 1
 ````
 `el valor de user_id va a cambiar segun cual sea el usuario que queres que tenga rol de admin`
 
-### 8- Autenticar usuario para realizar operaciones.
+### 8- Autenticar usuario para realizar operaciones
 Para realizar operaciones es necesario que primero el usuario inicie sesión en el sistema, esto lo podras hacer con el siguiente endpoint `localhost:3000/api/auth/login`
 
-**Ejemplo de Payload para iniciar sesión
+**Ejemplo de Payload para iniciar sesión**
 ```
 {"email":"luismi@gmail.com",
  "password": "auto_verde"
  }
 ```
 Con el token obtenido como respuesta ya vas a poder realizar operaciones, algunas van a estar restringuidas para los usuarios que no tengan rol de administrador.
+
 ⚠️Es importante que al momento de realizar alguna operacion envies el token en headers "Authorization" = "Bearer(Token)"⚠️
 
 ### 9 - Realizar pedidos
 El usuario que ya este logueado puede ver todos los productos disponibles utilizando el siguiente endpoint `localhost:3000/api/products`
 
 Por ultimo el usuario logueado podra realizar pedidos de productos utilizando este endpoint `localhost:3000/api/orders`
-** Ejemplo de Payload
+
+**Ejemplo de Payload**
+
 ```
 {
 "method_of_payment" : "cash",
