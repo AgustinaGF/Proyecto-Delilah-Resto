@@ -56,29 +56,9 @@ CREATE TABLE orders_detail (
 INSERT INTO order_status (status) VALUES
 ('new'), ('confirmed'), ('preparing'), ('shipping'), ('delivered'), ('canceled');
 
--- insert users
-INSERT INTO users (username, password,full_name, email,phone_number, address) VALUES
-('LuisMiguel',"auto_verde", 'Juan Luis', 'luismi@gmail.com', '1199998888', 'gascon 300 dto c'),
-('Grace', 'auto_rojo', 'Graciana Perez', 'grace@gmail.com', '1165954390', 'Rivadavia 1300 dtoA'),
-('JoeyRamone', 'auto_azul', 'Ramon Valdez', 'joey@gmail.com', '1165946595', 'calle falsa 123');
-
 --  insert products
 INSERT INTO products (product_title,product_price,product_image, description) VALUES
 ('Veggie Burguer', 400, 'https://via.placeholder.com/150', 'Lentil burger with lettuce and tomato'),
-('Tuna and Prawns Salad', 500, 'https://via.placeholder.com/150', 'Rice with Tuna and Prawns'),
+('Tuna Salad', 300, 'https://via.placeholder.com/150', 'Rice with Tuna'),
 ('Pepperoni pizza', 250, 'https://via.placeholder.com/150', 'Pepperoni classic extra large pizza');
 
-
--- insert orders
-INSERT INTO orders ( method_of_payment, user_id) VALUES
-('cash', 3),
-('credit card', 1);
-
-
--- insert orders_detail
-INSERT INTO orders_detail (order_id, product_id, order_description, product_price, product_amount) VALUES
-( 1, 1, 'Lentil burger with lettuce and tomato', 400, 3),
-( 1, 2, 'Rice with Tuna and Prawns', 500, 1),
-( 2, 3, 'Pepperoni classic extra large pizza', 250, 2),
-( 2, 2, 'Rice with Tuna and Prawns', 500, 1),
-( 2, 1, 'Lentil burger with lettuce and tomato', 400, 5);
