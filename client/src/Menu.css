@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=Anton&family=Fjalla+One&family=Lobster&family=Pacifico&display=swap");
+.title {
+    font-family: "Pacifico", sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 51px;
+    background-color: floralwhite;
+    border-bottom: solid;
+}
+
+.nameProduct {
+    font-family: "Lobster", sans-serif;
+    /* font-weight: bold; */
+}
+
+.contentCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.textCard {
+    font-family: "Lobster", sans-serif;
+    color: darksalmon;
+}
+
+.subtitle {
+    font-family: "Anton", sans-serif;
+}
+
+.image {
+    max-height: 500px;
+}
+
+.columImage {
+    /* width: 50%; */
+    margin-left: 0.3em;
+}
+
+.circle {
+    margin-right: 0.3em;
+}
