@@ -10,9 +10,7 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 // esta variable es la que me permite pasar la info de un solo producto al Drawer
 var product = null;
-// function handleButtonClick(data) {
-// 	console.log(data);
-// }
+
 const fakeDataUrl =
 	"https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
 
@@ -21,7 +19,7 @@ const plusCircleIcon = (
 );
 
 function InfiniteListExample(props) {
-	console.log(props, "caca");
+	console.log(props);
 	//Utiliza el hook useState
 	const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -29,11 +27,14 @@ function InfiniteListExample(props) {
 		setButtonClicked(true);
 		product = data;
 	}
+
+	function changeButtonClick() {
+		setButtonClicked(false);
+	}
 	return (
 		<div className="demo-infinite-container">
 			<List>
 				{props.value.map((l) => {
-					// console.log(props.value, "acaa");
 					return (
 						<List.Item key={l.product_id}>
 							<List.Item.Meta
@@ -47,7 +48,8 @@ function InfiniteListExample(props) {
 								title={<p className="nameProduct"> {l.product_title} </p>}
 								description={
 									<p className="nameProduct">
-										{l.description} <br /> $ {l.product_price}
+										{" "}
+										{l.description} <br /> $ {l.product_price}{" "}
 									</p>
 								}
 							/>
@@ -57,12 +59,14 @@ function InfiniteListExample(props) {
 								onClick={() => handleButtonClick(l)}
 							>
 								+
-							</Button>
-							{buttonClicked ? <DrawerComponent value={product} /> : null}
+							</Button>{" "}
 						</List.Item>
 					);
-				})}
-			</List>
+				})}{" "}
+			</List>{" "}
+			{buttonClicked ? (
+				<DrawerComponent value={product} visible={true} />
+			) : null}{" "}
 		</div>
 	);
 }

@@ -7,10 +7,11 @@ function onChange(value) {
 
 const DrawerComponent = (props) => {
 	console.log(props, "aca");
-	const [visible, setVisible] = useState(true);
+	const [visible, setVisible] = useState(props.visible);
 
 	const onClose = () => {
 		setVisible(false);
+		console.log("cerro");
 	};
 
 	return (
@@ -18,7 +19,7 @@ const DrawerComponent = (props) => {
 			<Drawer
 				title={props.value.product_title}
 				placement="right"
-				closable={false}
+				// closable={false}
 				onClose={onClose}
 				visible={visible}
 			>

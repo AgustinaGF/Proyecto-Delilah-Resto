@@ -30,8 +30,7 @@
 }
 
 .image {
-    height: 512px;
-    object-fit: cover;
+    max-height: 500px;
 }
 
 .columImage {
