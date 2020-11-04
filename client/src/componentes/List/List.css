@@ -8,3 +8,7 @@
     font-family: "Lobster", sans-serif;
     /* font-weight: bold; */
 }
+
+.button {
+    margin: 3em;
+}
