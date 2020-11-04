@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import DrawerComponent from "../Drawer/Drawer";
-import { List, message, Avatar, Spin, Button, Drawer } from "antd";
+import { List, message, Avatar, Spin, Button, InputNumber } from "antd";
 import style from "../List/List.css";
 import reqwest from "reqwest";
 // fijarme de poner el scroll este
 // import InfiniteScroll from "react-infinite-scroller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-
-// esta variable es la que me permite pasar la info de un solo producto al Drawer
-var product = null;
 
 const fakeDataUrl =
 	"https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
@@ -19,18 +16,24 @@ const plusCircleIcon = (
 );
 
 function InfiniteListExample(props) {
-	console.log(props);
-	//Utiliza el hook useState
-	const [buttonClicked, setButtonClicked] = useState(false);
+	const [selectedPlayer, setSelectedPlayer] = useState("");
 
-	function handleButtonClick(data) {
-		setButtonClicked(true);
-		product = data;
-	}
+	const [visible, setVisible] = useState(false);
 
-	function changeButtonClick() {
-		setButtonClicked(false);
-	}
+	const onSelect = (name) => {
+		setSelectedPlayer(name);
+		setVisible(true);
+	};
+
+	const ViewProfileButton = ({ name }) => {
+		return (
+			<Button type="primary" shape="circle" onClick={() => onSelect(name)}>
+				+
+			</Button>
+		);
+	};
+	const onClose = () => setVisible(false);
+
 	return (
 		<div className="demo-infinite-container">
 			<List>
@@ -46,27 +49,27 @@ function InfiniteListExample(props) {
 									/>
 								}
 								title={<p className="nameProduct"> {l.product_title} </p>}
+								// onClick={() => onSelect(l)}
 								description={
 									<p className="nameProduct">
-										{" "}
-										{l.description} <br /> $ {l.product_price}{" "}
+										{l.description} <br /> $ {l.product_price}
 									</p>
 								}
 							/>
-							<Button
-								type="primary"
-								shape="circle"
-								onClick={() => handleButtonClick(l)}
-							>
-								+
-							</Button>{" "}
+							<ViewProfileButton name={l} />
 						</List.Item>
 					);
-				})}{" "}
-			</List>{" "}
-			{buttonClicked ? (
-				<DrawerComponent value={product} visible={true} />
-			) : null}{" "}
+				})}
+				<Button type="primary" className="button" block>
+					Confirmar Pedido
+				</Button>
+
+				<DrawerComponent
+					props={selectedPlayer}
+					visible={visible}
+					onClose={onClose}
+				/>
+			</List>
 		</div>
 	);
 }

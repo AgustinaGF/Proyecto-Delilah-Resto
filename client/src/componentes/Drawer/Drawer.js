@@ -1,32 +1,28 @@
 import React, { useState } from "react";
 import { Drawer, Button, InputNumber } from "antd";
 
-function onChange(value) {
-	console.log("changed", value);
-}
-
-const DrawerComponent = (props) => {
-	console.log(props, "aca");
-	const [visible, setVisible] = useState(props.visible);
-
-	const onClose = () => {
-		setVisible(false);
-		console.log("cerro");
+const DrawerComponent = (product) => {
+	const [amount, setAmount] = useState(0);
+	const onChange = (value) => {
+		console.log(value);
+		setAmount(value);
+		console.log("changed", amount);
 	};
-
 	return (
 		<>
 			<Drawer
-				title={props.value.product_title}
+				destroyOnClose
+				title={product.props.product_title}
 				placement="right"
 				// closable={false}
-				onClose={onClose}
-				visible={visible}
+				onClose={product.onClose}
+				visible={product.visible}
 			>
-				<p> {props.value.description} </p> <p> Cantidad </p>
-				<InputNumber min={1} max={10} defaultValue={1} onChange={onChange} />
+				<p> {product.props.description} </p> <p> Cantidad </p>
+				<InputNumber min={0} max={10} defaultValue={1} onChange={onChange} />
 			</Drawer>
 		</>
 	);
 };
+
 export default DrawerComponent;

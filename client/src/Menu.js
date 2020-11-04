@@ -25,18 +25,13 @@ class Menu extends React.Component {
 	render() {
 		console.log(this.state.products, "hola");
 		if (this.state.isLoading) {
-			return (
-				<img alt="example" src={loading}>
-					{" "}
-				</img>
-			);
+			return <img alt="example" src={loading}></img>;
 		}
 		return (
 			<div>
 				<PageHeader className="title" title="Delilah Restó" />
 				<div>
 					<Carousel autoplay>
-						{" "}
 						{this.state.products.map((product) => (
 							<Card
 								hoverable
@@ -56,13 +51,13 @@ class Menu extends React.Component {
 										className="nameProduct"
 									/>
 									<p className="textCard"> Añadir </p>{" "}
-								</div>{" "}
+								</div>
 							</Card>
-						))}{" "}
-					</Carousel>{" "}
-				</div>{" "}
+						))}
+					</Carousel>
+				</div>
 				<PageHeader className="nameProduct" title="Nuestros Platos" />
-				<InfiniteListExample value={this.state.products} />{" "}
+				<InfiniteListExample value={this.state.products} />
 			</div>
 		);
 	}
