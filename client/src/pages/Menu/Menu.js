@@ -1,8 +1,8 @@
 import React from "react";
 import { PageHeader, Card, Carousel, Row, Col } from "antd";
-import loading from "./Imagenes/loading.gif";
-import style from "../src/Menu.css";
-import InfiniteListExample from "../src/componentes/List/List";
+import loading from "./../../Imagenes/loading.gif";
+import style from "../Menu/Menu.css";
+import InfiniteListExample from "../../componentes/List/List";
 
 const { Meta } = Card;
 
@@ -32,6 +32,7 @@ class Menu extends React.Component {
 				<PageHeader className="title" title="Delilah Restó" />
 				<div>
 					<Carousel autoplay>
+						{" "}
 						{this.state.products.map((product) => (
 							<Card
 								hoverable
@@ -51,13 +52,13 @@ class Menu extends React.Component {
 										className="nameProduct"
 									/>
 									<p className="textCard"> Añadir </p>{" "}
-								</div>
+								</div>{" "}
 							</Card>
-						))}
-					</Carousel>
-				</div>
+						))}{" "}
+					</Carousel>{" "}
+				</div>{" "}
 				<PageHeader className="nameProduct" title="Nuestros Platos" />
-				<InfiniteListExample value={this.state.products} />
+				<InfiniteListExample value={this.state.products} />{" "}
 			</div>
 		);
 	}

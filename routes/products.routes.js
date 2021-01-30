@@ -4,7 +4,7 @@ const serviceProducts = require("../services/products.service");
 const { validateProductRegister } = require("../middlewares/product.register");
 const { authUser, authUserAdmin } = require("../middlewares/auth");
 
-// get que traiga todos los productos
+// get que traiga todos los productos (creo q de aca saque el middelware que ya estaba)
 router.get("/", async(req, res) => {
     try {
         let result = await serviceProducts.getAllProducts();

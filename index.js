@@ -6,9 +6,13 @@ const userLogin = require("./routes/login.routes");
 const productsRoute = require("./routes/products.routes");
 const ordersRoute = require("./routes/orders.routes");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 server.use(express.json());
 server.use(cors());
+// configuracion para que use cookieParser
+server.use(cookieParser());
+
 // routes usuarios
 server.use("/api/users", usersRoute);
 server.use("/api/auth/register", userRegister);

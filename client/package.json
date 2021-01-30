@@ -10,13 +10,16 @@
         "@testing-library/react": "^9.5.0",
         "@testing-library/user-event": "^7.2.1",
         "antd": "^4.6.5",
+        "cookie-parser": "^1.4.5",
         "http-proxy-middleware": "^1.0.6",
         "proxy": "^1.0.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-scripts": "3.4.3",
         "redux": "^4.0.5",
-        "reqwest": "^2.0.5"
+        "reqwest": "^2.0.5",
+        "session": "^0.1.0",
+        "wouter": "^2.7.2"
     },
     "scripts": {
         "start": "PORT=3003 react-scripts start",
