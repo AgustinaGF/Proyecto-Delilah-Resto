@@ -1,11 +1,15 @@
 import React from "react";
-import Menu from "./Menu";
-// import { Button } from "antd";
-// import logo from './logo.svg';
+import Menu from "./pages/Menu/Menu";
+import Login from "./pages/Login/Login.js";
+
 import "./App.css";
 
 function App() {
-    return <Menu / > ;
+	return (
+		<div className="App">
+			<Login />
+		</div>
+	);
 }
 
 export default App;
