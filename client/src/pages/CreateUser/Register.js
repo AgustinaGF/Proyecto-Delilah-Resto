@@ -29,21 +29,18 @@ const Register = () => {
 				},
 			});
 			let contenido = await pedido.json();
-			console.log(contenido);
-			if (contenido.exito == false) {
+			if (contenido.success == false) {
 				let error = contenido.data;
 				error.forEach((element) => {
 					alert(element.mensaje);
 				});
 			} else {
 				let success = contenido.data;
-				success.forEach((element) => {
-					alert(element.mensaje);
-					setRegisterUser(true);
-				});
+				alert(contenido.message);
+
+				setRegisterUser(true);
 			}
 		} catch (error) {
-			// arreglar esto que siempre me tira error
 			console.log(error);
 		}
 	};
@@ -76,7 +73,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>
+				</Form.Item>{" "}
 				<Form.Item
 					label="Password"
 					name="password"
@@ -100,7 +97,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>
+				</Form.Item>{" "}
 				<Form.Item
 					label="Email"
 					name="email"
@@ -112,7 +109,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>
+				</Form.Item>{" "}
 				<Form.Item
 					label="Phone Number"
 					name="phone_number"
@@ -124,7 +121,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>
+				</Form.Item>{" "}
 				<Form.Item
 					label="Address"
 					name="address"
@@ -136,12 +133,12 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>
+				</Form.Item>{" "}
 				<Form.Item {...tailLayout}>
 					<Button type="primary" htmlType="submit">
-						Register
-					</Button>
-				</Form.Item>
+						Register{" "}
+					</Button>{" "}
+				</Form.Item>{" "}
 			</Form>
 		);
 	}
