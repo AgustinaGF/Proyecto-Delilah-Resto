@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { Drawer, Button, InputNumber } from "antd";
+import InfiniteListExample from "../List/List";
+import ButtonConfim from "../Button/Button";
 
+let details = [];
 const DrawerComponent = (product) => {
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = React.useState(1);
+
 	const onChange = (value) => {
+		// console.log(title);
 		console.log(value);
 		setAmount(value);
-		console.log("changed", amount);
 	};
+
+	const confirm = (idProduct) => {
+		details.push({ product_id: idProduct, product_amount: amount });
+	};
+	console.log("changed", amount);
+	console.log(details, "que hay");
+
 	return (
 		<>
 			<Drawer
@@ -20,7 +31,11 @@ const DrawerComponent = (product) => {
 			>
 				<p> {product.props.description} </p> <p> Cantidad </p>
 				<InputNumber min={0} max={10} defaultValue={1} onChange={onChange} />
+				<Button onClick={() => confirm(product.props.product_id)}>
+					Add to order
+				</Button>
 			</Drawer>
+			<ButtonConfim details={details} />
 		</>
 	);
 };

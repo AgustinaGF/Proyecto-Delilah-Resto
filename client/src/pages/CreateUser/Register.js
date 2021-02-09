@@ -1,5 +1,6 @@
 import React from "react";
 import Menu from "../Menu/Menu";
+import Dashboard from "../Dashboard/Dasboard";
 import { Form, Input, Button } from "antd";
 const layout = {
 	labelCol: {
@@ -49,7 +50,8 @@ const Register = () => {
 		console.log("Failed:", errorInfo);
 	};
 	if (registerUser == true) {
-		return <Menu />;
+		return <Dashboard />;
+		// return <Menu />;
 	} else {
 		return (
 			<Form
@@ -73,7 +75,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>{" "}
+				</Form.Item>
 				<Form.Item
 					label="Password"
 					name="password"
@@ -97,7 +99,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>{" "}
+				</Form.Item>
 				<Form.Item
 					label="Email"
 					name="email"
@@ -109,7 +111,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>{" "}
+				</Form.Item>
 				<Form.Item
 					label="Phone Number"
 					name="phone_number"
@@ -121,7 +123,7 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>{" "}
+				</Form.Item>
 				<Form.Item
 					label="Address"
 					name="address"
@@ -133,12 +135,12 @@ const Register = () => {
 					]}
 				>
 					<Input />
-				</Form.Item>{" "}
+				</Form.Item>
 				<Form.Item {...tailLayout}>
 					<Button type="primary" htmlType="submit">
-						Register{" "}
-					</Button>{" "}
-				</Form.Item>{" "}
+						Register
+					</Button>
+				</Form.Item>
 			</Form>
 		);
 	}
