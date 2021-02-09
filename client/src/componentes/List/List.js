@@ -16,6 +16,9 @@ const plusCircleIcon = (
 );
 
 function InfiniteListExample(props) {
+	console.log(props);
+	console.log("para ver", props.value);
+	console.log(props.details, "qqq");
 	const [selectedPlayer, setSelectedPlayer] = useState("");
 
 	const [visible, setVisible] = useState(false);
@@ -52,7 +55,7 @@ function InfiniteListExample(props) {
 								// onClick={() => onSelect(l)}
 								description={
 									<p className="nameProduct">
-										{l.description} <br /> $ {l.product_price}
+										{l.description} <br /> $ {l.product_price}{" "}
 									</p>
 								}
 							/>
@@ -60,10 +63,9 @@ function InfiniteListExample(props) {
 						</List.Item>
 					);
 				})}
-				<Button type="primary" className="button" block>
+				{/* <Button type="primary" className="button" block>
 					Confirmar Pedido
-				</Button>
-
+				</Button> */}
 				<DrawerComponent
 					props={selectedPlayer}
 					visible={visible}

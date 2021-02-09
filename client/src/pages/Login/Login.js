@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Menu from "../Menu/Menu";
 import Register from "../CreateUser/Register";
 import { Form, Input, Button } from "antd";
+import Dashboard from "../Dashboard/Dasboard";
 
 const layout = {
 	labelCol: { span: 8 },
@@ -51,7 +52,8 @@ const Login = () => {
 		return <Register />;
 	}
 	if (login == true) {
-		return <Menu />;
+		return <Dashboard />;
+		// return <Menu />;
 	} else {
 		return (
 			<Form
